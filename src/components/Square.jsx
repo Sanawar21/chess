@@ -35,7 +35,7 @@ export function positionToId(position) {
   return (position[1] - 1) * 8 + position[0];
 }
 
-export const Square = ({ id, occupier, moveableRange }) => {
+export const Square = ({ id, occupier, range }) => {
   const position = idToPosition(id);
 
   return (
@@ -44,11 +44,13 @@ export const Square = ({ id, occupier, moveableRange }) => {
         (position[0] + position[1]) % 2 === 0 ? "light-square" : "dark-square"
       }
     >
-      <img
-        className="occupier"
-        src={process.env.PUBLIC_URL + `/imgs/${occupier}.png`}
-        alt="?"
-      ></img>
+      {occupier !== occupiers.na ? (
+        <img
+          className="occupier"
+          src={process.env.PUBLIC_URL + `/imgs/${occupier}.png`}
+          alt="?"
+        ></img>
+      ) : null}
     </div>
   );
 };
